@@ -9,15 +9,23 @@ import java.util.*;
 
 public class ProjectRepository implements IProjectRepository {
 
-    private static Map<String, ProjectDTO> projectMap = null;
+    private static final IProjectRepository _instance = new ProjectRepository();
 
-    public ProjectRepository() {
-        if (projectMap == null) {
-            projectMap = new HashMap<>();
+    private static Map<String, ProjectDTO> projectMap = new HashMap<>();
+
+    public static IProjectRepository getInstance() {
+        return _instance;
+    }
+
+    @Override
+    public void persist(@NotNull final String id, @NotNull final ProjectDTO projectDTO) {
+        if (!id.isEmpty()) {
+            projectMap.put(id, projectDTO);
         }
     }
 
     @NotNull
+    @Override
     public ProjectDTO findOne(@NotNull final String id, @NotNull final String userId) {
         if (!id.isEmpty() && !userId.isEmpty()) {
             final Collection<ProjectDTO> list = new ArrayList<>(findAll(userId));
