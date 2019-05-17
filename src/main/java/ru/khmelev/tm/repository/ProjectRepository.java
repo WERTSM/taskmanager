@@ -19,8 +19,10 @@ public class ProjectRepository implements IProjectRepository {
 
     @Override
     public void persist(@NotNull final String id, @NotNull final ProjectDTO projectDTO) {
+        System.out.println("w1");
         if (!id.isEmpty()) {
             projectMap.put(id, projectDTO);
+            System.out.println("w2");
         }
     }
 

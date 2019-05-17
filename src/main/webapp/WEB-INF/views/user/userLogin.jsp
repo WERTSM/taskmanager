@@ -23,11 +23,11 @@
 		<tr> </tr>
 		<tr>
 		    <td>
-		        <p><input align="center" type = "submit" value = "Login"/></p>
+		        <input align = "left" type = "submit" value = "Login"/>
 		    </td>
 		    <td align = "right">
-		        <a align = "right" href="${pageContext.servletContext.contextPath}/registration">
-                    <input type = "button"  value = "Registration"align = "right"/>
+		        <a align = "right" href = "${pageContext.servletContext.contextPath}/registry">
+                    <input type = "button"  value = "Registration"/>
                  </a>
             </td>
 		</tr>

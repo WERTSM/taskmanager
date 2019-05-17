@@ -1,9 +1,9 @@
 package ru.khmelev.tm.servlet;
 
 import org.jetbrains.annotations.NotNull;
-import ru.khmelev.tm.api.service.IProjectService;
-import ru.khmelev.tm.dto.ProjectDTO;
-import ru.khmelev.tm.service.ProjectService;
+import ru.khmelev.tm.api.service.IUserService;
+import ru.khmelev.tm.dto.UserDTO;
+import ru.khmelev.tm.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,20 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 
-@WebServlet("/project")
-public class ProjectServlet extends HttpServlet {
-
+@WebServlet("/user")
+public class UserPageServlet extends HttpServlet {
     @NotNull
-    private final IProjectService projectService = ProjectService.getInstance();
+    private final IUserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         @NotNull final String userId = (String) req.getSession().getAttribute("userId");
-        @NotNull final Collection<ProjectDTO> projects = projectService.findAll(userId);
-        req.setAttribute("projects", projects);
-        @NotNull final RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/project.jsp");
+        @NotNull final UserDTO userDTO = userService.findUser(userId);
+        req.setAttribute("userDTO", userDTO);
+        @NotNull final RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/userPage.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

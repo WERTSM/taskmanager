@@ -6,12 +6,9 @@
 	    <title>ПРИВЕТСТВУЮ</title>
     </head>
     <body>
-    <p>
-        <b>Привет ДРУГ :</b>
+    <p align = "center"> <b> Привет ДРУГ: </b> </p>
+    <p align = "center">
+        <a href="${pageContext.servletContext.contextPath}/login"> <input type = "button"  value = "Login" align = "centre"/> </a>
     </p>
-
-    <a align = "right" href="${pageContext.servletContext.contextPath}/login">
-        <input type = "button"  value = "Login" align = "centre"/>
-    </a>
     </body>
 </html>

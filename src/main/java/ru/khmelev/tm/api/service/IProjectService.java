@@ -6,6 +6,7 @@ import ru.khmelev.tm.dto.ProjectDTO;
 import java.util.Collection;
 
 public interface IProjectService {
+
     void createProject(@NotNull String id, @NotNull ProjectDTO projectDTO);
 
     @NotNull ProjectDTO findProject(@NotNull String id, @NotNull String userId);
