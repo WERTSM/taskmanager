@@ -5,10 +5,8 @@ import org.jetbrains.annotations.Nullable;
 import ru.khmelev.tm.api.service.IProjectService;
 import ru.khmelev.tm.api.service.IUserService;
 import ru.khmelev.tm.dto.UserDTO;
-import ru.khmelev.tm.enumeration.Role;
 import ru.khmelev.tm.service.ProjectService;
 import ru.khmelev.tm.service.UserService;
-import ru.khmelev.tm.util.PasswordHashUtil;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
-import java.util.UUID;
 
 @WebServlet("/login")
 public class UserLoginServlet extends HttpServlet {
@@ -37,15 +33,6 @@ public class UserLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        @NotNull final UserDTO userDTO2 = new UserDTO();
-        userDTO2.setId(UUID.randomUUID().toString());
-        @NotNull final String hashPassword = Objects.requireNonNull(PasswordHashUtil.md5("test"));
-        userDTO2.setHashPassword(hashPassword);
-        userDTO2.setLogin("test");
-        userDTO2.setRole(Role.ADMIN);
-        userService.createUser(userDTO2.getId(),userDTO2);
-
         @Nullable final UserDTO userDTO = userService.userLogin(req.getParameter("login"), req.getParameter("password"));
         if (userDTO != null) {
             req.getSession().setAttribute("userId", userDTO.getId());
