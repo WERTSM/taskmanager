@@ -18,7 +18,7 @@
 
             <select name="taskProjectId">
             <option selected value=""><c:out value="Без проекта"/></option>
-            <option disabled> Выберите героя </option>
+            <option disabled> Выберите проект </option>
                 <c:forEach var = "project" items="${list}">
                     <option value = "${project.id}"> ${project.name} </option>
                 </c:forEach>
