@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <body>
 	<p  align = "center">
-    <b> Projects :</b>
+    <b> Tasks :</b>
 	</p>
 
 	<table border="5" align = "center">
