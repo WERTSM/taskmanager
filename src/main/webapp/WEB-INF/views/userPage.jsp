@@ -17,10 +17,10 @@
             <b> Your login : ${user.login} </b>
         </p>
         <p>
-            <a href = "${pageContext.servletContext.contextPath}/project"> <input type="button" value="Проекты"/> </a>
+            <a href = "${pageContext.servletContext.contextPath}/projects"> <input type="button" value="Проекты"/> </a>
         </p>
         <p>
-            <a href = "${pageContext.servletContext.contextPath}/task"> <input type="button" value="Задачи"/> </a>
+            <a href = "${pageContext.servletContext.contextPath}/tasks"> <input type="button" value="Задачи"/> </a>
         </p>
         <p>
             <a href="${pageContext.servletContext.contextPath}/userEdit"> <input type="button" value="Изменить данные пользователя"/> </a>

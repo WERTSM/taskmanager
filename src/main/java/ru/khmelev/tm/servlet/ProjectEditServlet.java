@@ -26,7 +26,6 @@ public class ProjectEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         @Nullable final ProjectDTO projectDTO = projectService.findProject(req.getParameter("PrId"), (String) req.getSession().getAttribute("userId"));
-
         req.setAttribute("project", projectDTO);
         req.getRequestDispatcher("WEB-INF/views/project/projectEdit.jsp").forward(req, resp);
     }

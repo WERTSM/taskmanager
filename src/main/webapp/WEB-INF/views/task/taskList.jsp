@@ -1,11 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ru.khmelev.tm.dto.ProjectDTO" %>
+<%@ page import="ru.khmelev.tm.dto.TaskDTO" %>
 <%@ page import="ru.khmelev.tm.util.ConverterUtil" %>
 <html>
     <head>
-	    <title>Project list</title>
+	    <title>Task list</title>
     </head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <body>
@@ -22,29 +22,31 @@
 			<th>Finish date</th>
     		<th>Create date</th>
     		<th>Status</th>
+    		<th>Project ID</th>
     		<th>Edit</th>
     		<th>Delete</th>
 		</tr>
-		<%List list = (List<ProjectDTO>) request.getAttribute("projects");%>
+		<%List list = (List<TaskDTO>) request.getAttribute("tasks");%>
 		<c:set var="list" value="<%=list%>"/>
-		<c:forEach items="${list}"  var="project" varStatus="status">
+		<c:forEach items="${list}"  var="task" varStatus="status">
 			<tr>
-				<td>${project.id}</td>
-				<td>${project.name}</td>
-				<td>${project.description}</td>
-				<td>${ConverterUtil.convertDateFormat(project.dateStart)}</td>
-				<td>${ConverterUtil.convertDateFormat(project.dateStart)}</td>
-				<td>${ConverterUtil.convertDateFormat(project.dateFinish)}</td>
-				<td>${project.status.displayName}</td>
+				<td>${task.id}</td>
+				<td>${task.name}</td>
+				<td>${task.description}</td>
+				<td>${ConverterUtil.convertDateFormat(task.dateStart)}</td>
+				<td>${ConverterUtil.convertDateFormat(task.dateStart)}</td>
+				<td>${ConverterUtil.convertDateFormat(task.dateFinish)}</td>
+				<td>${task.status.displayName}</td>
+				<td>${task.projectId}</td>
 				<td>
-				    <form method = "GET"  action = "${pageContext.servletContext.contextPath}/projectEdit">
-                    <input type = "hidden" name = "PrId" value = ${project.id}>
+				    <form method = "GET"  action = "${pageContext.servletContext.contextPath}/taskEdit">
+                    <input type = "hidden" name = "TskId" value = ${task.id}>
                     <input type = "submit" value = "edit"/>
                     </form>
                 </td>
                 <td>
-                    <form method = "POST" action = "${pageContext.servletContext.contextPath}/projectDelete">
-                    <input type = "hidden" name = "PrId" value=${project.id}>
+                    <form method = "POST" action = "${pageContext.servletContext.contextPath}/taskDelete">
+                    <input type = "hidden" name = "TskId" value=${task.id}>
                     <input type = "submit" value = "delete" />
                     </form>
                 </td>
@@ -55,8 +57,8 @@
 	<table align = "center">
     <tr>
         <td align = "left">
-            <a href = "${pageContext.servletContext.contextPath}/projectCreate">
-                <input type = "button" value = "Add Project"/>
+            <a href = "${pageContext.servletContext.contextPath}/taskCreate">
+                <input type = "button" value = "Add Task"/>
             </a>
         </td>
         <td align = "right">

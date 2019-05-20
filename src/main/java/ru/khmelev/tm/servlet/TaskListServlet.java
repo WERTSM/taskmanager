@@ -1,9 +1,9 @@
 package ru.khmelev.tm.servlet;
 
 import org.jetbrains.annotations.NotNull;
-import ru.khmelev.tm.api.service.IProjectService;
-import ru.khmelev.tm.dto.ProjectDTO;
-import ru.khmelev.tm.service.ProjectService;
+import ru.khmelev.tm.api.service.ITaskService;
+import ru.khmelev.tm.dto.TaskDTO;
+import ru.khmelev.tm.service.TaskService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,18 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
-@WebServlet("/projects")
-public class ProjectListServlet extends HttpServlet {
+@WebServlet("/tasks")
+public class TaskListServlet extends HttpServlet {
 
     @NotNull
-    private final IProjectService projectService = ProjectService.getInstance();
+    private final ITaskService taskService = TaskService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         @NotNull final String userId = (String) req.getSession().getAttribute("userId");
-        @NotNull final Collection<ProjectDTO> projects = projectService.findAll(userId);
-        req.setAttribute("projects", projects);
-        @NotNull final RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/project/projectList.jsp");
+        @NotNull final Collection<TaskDTO> tasks = taskService.findAll(userId);
+        req.setAttribute("tasks", tasks);
+        @NotNull final RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/task/taskList.jsp");
         requestDispatcher.forward(req, resp);
     }
 }
