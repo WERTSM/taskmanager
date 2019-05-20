@@ -35,6 +35,6 @@ public class UserEditServlet extends HttpServlet {
         userDTO.setLogin(req.getParameter("login"));
         userDTO.setRole(Role.ADMIN);
         userService.createUser(userDTO.getId(), userDTO);
-        resp.sendRedirect(req.getContextPath() + "/user");
+        resp.sendRedirect(req.getContextPath() + "/logout");
     }
 }
